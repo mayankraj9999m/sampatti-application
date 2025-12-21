@@ -30,7 +30,7 @@ export const useTransactions = (userId) => {
     // useCallback is used for performance reasons, it will memoize the function
     const fetchTransactions = useCallback(async () => {
         try {
-            const response = await fetch(`${API_URL}/transactions/${userId}`);
+            const response = await fetch(`${API_URL}/transactions/${userId}?limit=5`);
             const data = await response.json();
             setTransactions(JSON.stringify(data?.data, null, 4));
         } catch (error) {
