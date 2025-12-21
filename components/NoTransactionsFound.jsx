@@ -1,12 +1,13 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Text, TouchableOpacity, View } from "react-native";
-import { styles } from "../assets/styles/home.styles";
+import useHomeStyles from "../assets/styles/home.styles";
 import { useRouter } from "expo-router";
 import useTheme from "../hooks/useTheme";
 
 export const NoTransactionsFound = () => {
     const { themeColors: COLORS } = useTheme();
     const router = useRouter();
+    const styles = useHomeStyles();
 
     return (
         <View style={styles.emptyState}>
