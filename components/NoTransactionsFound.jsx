@@ -1,10 +1,11 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../assets/styles/home.styles";
-import { COLORS } from "../constants/colors";
 import { useRouter } from "expo-router";
+import useTheme from "../hooks/useTheme";
 
-const NoTransactionsFound = () => {
+export const NoTransactionsFound = () => {
+    const { themeColors: COLORS } = useTheme();
     const router = useRouter();
 
     return (
@@ -19,4 +20,3 @@ const NoTransactionsFound = () => {
         </View>
     );
 };
-export default NoTransactionsFound;

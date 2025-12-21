@@ -4,12 +4,14 @@ import { useSignUp } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { styles } from "../../assets/styles/auth.styles.js";
-import { COLORS } from "../../constants/colors.js";
+import useAuthStyles from "../../assets/styles/auth.styles.js";
+import useTheme from "../../hooks/useTheme";
 
 export default function SignUpScreen() {
+    const { themeColors: COLORS } = useTheme();
     const { isLoaded, signUp, setActive } = useSignUp();
     const router = useRouter();
+    const styles = useAuthStyles();
 
     const [emailAddress, setEmailAddress] = useState("");
     const [password, setPassword] = useState("");
@@ -104,7 +106,11 @@ export default function SignUpScreen() {
                     placeholder="Enter your verification code"
                     onChangeText={(code) => setCode(code)}
                 />
-                <TouchableOpacity onPress={onVerifyPress} style={[styles.button, isLoading && { opacity: 0.5 }]} disabled={isLoading}>
+                <TouchableOpacity
+                    onPress={onVerifyPress}
+                    style={[styles.button, isLoading && { opacity: 0.5 }]}
+                    disabled={isLoading}
+                >
                     <Text style={styles.buttonText}>{isLoading ? "Verifying..." : "Verify"}</Text>
                 </TouchableOpacity>
             </View>
@@ -148,7 +154,11 @@ export default function SignUpScreen() {
                     onChangeText={(password) => setPassword(password)}
                 />
 
-                <TouchableOpacity onPress={onSignUpPress} style={[styles.button, isLoading && { opacity: 0.5 }]} disabled={isLoading}>
+                <TouchableOpacity
+                    onPress={onSignUpPress}
+                    style={[styles.button, isLoading && { opacity: 0.5 }]}
+                    disabled={isLoading}
+                >
                     <Text style={styles.buttonText}>{isLoading ? "Creating Account..." : "Sign Up"}</Text>
                 </TouchableOpacity>
 

@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { styles } from "../assets/styles/home.styles";
-import { COLORS } from "../constants/colors";
+import useHomeStyles from "../assets/styles/home.styles";
 import { formatDate } from "../lib/utils";
+import useTheme from "../hooks/useTheme";
 
 // Map categories to their respective icons
 const CATEGORY_ICONS = {
@@ -17,6 +17,8 @@ const CATEGORY_ICONS = {
 };
 
 export const TransactionItem = ({ item, onDelete }) => {
+    const { themeColors: COLORS } = useTheme();
+    const styles = useHomeStyles();
     const isIncome = parseFloat(item.amount) > 0;
     const iconName = CATEGORY_ICONS[item.category.toLowerCase()] || "pricetag-outline";
 

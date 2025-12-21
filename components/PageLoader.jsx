@@ -1,8 +1,10 @@
 import { View, ActivityIndicator, Text } from "react-native";
-import { styles } from "../assets/styles/home.styles.js";
-import { COLORS } from "../constants/colors.js";
+import useHomeStyles from "../assets/styles/home.styles.js";
+import useTheme from "../hooks/useTheme";
 
 const PageLoader = ({text}) => {
+    const { themeColors: COLORS } = useTheme();
+    const styles = useHomeStyles();
     return (
         <View style={styles.clerkLoadingContainer}>
             <View
@@ -23,4 +25,5 @@ const PageLoader = ({text}) => {
         </View>
     );
 };
+
 export default PageLoader;

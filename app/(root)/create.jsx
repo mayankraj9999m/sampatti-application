@@ -2,10 +2,10 @@ import { useUser } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { View, Text, Alert, TouchableOpacity, TextInput, ActivityIndicator } from "react-native";
-import { styles } from "../../assets/styles/create.styles.js";
+import useCreateStyles from "../../assets/styles/create.styles.js";
 import { Ionicons } from "@expo/vector-icons";
-import { COLORS } from "../../constants/colors.js";
 import { API_URL } from "../../constants/api.js";
+import useTheme from "../../hooks/useTheme.js";
 
 const CATEGORIES = [
     { id: "food", name: "Food & Drinks", icon: "fast-food" },
@@ -18,8 +18,10 @@ const CATEGORIES = [
 ];
 
 const CreateScreen = () => {
+    const { themeColors: COLORS } = useTheme();
     const router = useRouter();
     const { user } = useUser();
+    const styles = useCreateStyles();
 
     const [title, setTitle] = useState("");
     const [amount, setAmount] = useState("");
@@ -61,8 +63,7 @@ const CreateScreen = () => {
                 throw new Error(errorData.error || "Failed to create transaction");
             }
 
-            Alert.alert("Success", "Transaction created successfully",[
-            { text: "OK", style: "default" }]);
+            Alert.alert("Success", "Transaction created successfully", [{ text: "OK", style: "default" }]);
             router.back();
         } catch (error) {
             Alert.alert("Error", error.message || "Failed to create transaction");

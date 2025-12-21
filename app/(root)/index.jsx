@@ -5,16 +5,17 @@ import { Ionicons } from "@expo/vector-icons";
 import { useTransactions } from "../../hooks/useTransactions.js";
 import { useEffect, useState } from "react";
 import PageLoader from "../../components/PageLoader.jsx";
-import { styles } from "../../assets/styles/home.styles.js";
+import useHomeStyles from "../../assets/styles/home.styles.js";
 import { SignOutButton } from "../../components/SignOutButton.jsx";
 import { BalanceCard } from "../../components/BalanceCard.jsx";
 import { TransactionItem } from "../../components/TransactionItem.jsx";
-import NoTransactionsFound from "../../components/NoTransactionsFound.jsx";
+import { NoTransactionsFound } from "../../components/NoTransactionsFound.jsx";
 
 export default function Page() {
     const { user } = useUser();
     const router = useRouter();
     const [refreshing, setRefreshing] = useState(false);
+    const styles = useHomeStyles();
 
     const { transactions, summary, isLoading, loadData, deleteTransaction } = useTransactions(user.id);
 

@@ -3,13 +3,15 @@ import { Link, useRouter } from "expo-router";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { styles } from "../../assets/styles/auth.styles.js";
+import useAuthStyles from "../../assets/styles/auth.styles.js";
 import { Ionicons } from "@expo/vector-icons";
-import { COLORS } from "../../constants/colors.js";
+import useTheme from "../../hooks/useTheme";
 
 export default function Page() {
+    const { themeColors: COLORS } = useTheme();
     const { signIn, setActive, isLoaded } = useSignIn();
     const router = useRouter();
+    const styles = useAuthStyles();
 
     const [emailAddress, setEmailAddress] = useState("");
     const [password, setPassword] = useState("");
@@ -119,7 +121,11 @@ export default function Page() {
                             onChangeText={(password) => setPassword(password)}
                         />
 
-                        <TouchableOpacity onPress={onSignInPress} style={[styles.button, isLoading && { opacity: 0.5 }]} disabled={isLoading}>
+                        <TouchableOpacity
+                            onPress={onSignInPress}
+                            style={[styles.button, isLoading && { opacity: 0.5 }]}
+                            disabled={isLoading}
+                        >
                             <Text style={styles.buttonText}>{isLoading ? "Signing In..." : "Sign In"}</Text>
                         </TouchableOpacity>
 
@@ -145,7 +151,11 @@ export default function Page() {
                             onChangeText={(code) => setCode(code)}
                         />
 
-                        <TouchableOpacity onPress={onVerifyPress} style={[styles.button, isLoading && { opacity: 0.5 }]} disabled={isLoading}>
+                        <TouchableOpacity
+                            onPress={onVerifyPress}
+                            style={[styles.button, isLoading && { opacity: 0.5 }]}
+                            disabled={isLoading}
+                        >
                             <Text style={styles.buttonText}>{isLoading ? "Verifying..." : "Verify"}</Text>
                         </TouchableOpacity>
 
