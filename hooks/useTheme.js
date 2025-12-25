@@ -9,8 +9,8 @@ const THEME_KEY = "app_theme";
 
 export const ThemeProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
-    const [currentTheme, setCurrentTheme] = useState("forest");
-    const [themeColors, setThemeColors] = useState(THEMES.forest);
+    const [currentTheme, setCurrentTheme] = useState("coffee");
+    const [themeColors, setThemeColors] = useState(THEMES.coffee);
 
     const themeOptions = Object.keys(THEMES);
 

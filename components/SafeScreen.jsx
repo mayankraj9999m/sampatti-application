@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import useTheme from "../hooks/useTheme";
+import useTheme from "../hooks/useTheme.js";
 
 export const SafeScreen = ({ children }) => {
     const { themeColors: COLORS } = useTheme();
